@@ -119,6 +119,137 @@ body {
   margin-top: 26px;
 }
 
+.schedule-board h2 {
+  margin: 0;
+}
+
+.board-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.board-sub {
+  margin: 8px 0 0;
+  color: color-mix(in srgb, #19212e 64%, #3268b8 36%);
+}
+
+.board-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-controls .player-input {
+  width: 180px;
+}
+
+.board-controls .date-picker {
+  width: 160px;
+}
+
+.board-body {
+  min-height: 160px;
+}
+
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.session-card {
+  border: 1px solid color-mix(in srgb, #19212e 13%, transparent);
+  border-radius: 8px;
+  padding: 18px;
+  background: color-mix(in srgb, #f4f7fb 82%, white 18%);
+  box-shadow: 0 10px 30px color-mix(in srgb, #19212e 8%, transparent);
+}
+
+.session-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.session-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.session-meta {
+  margin: 6px 0 12px;
+  font-size: 13px;
+  color: color-mix(in srgb, #19212e 58%, #3268b8 42%);
+}
+
+.session-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.session-actions .el-button + .el-button {
+  margin-left: 0;
+}
+
+.seat-editor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.roster {
+  margin-top: 14px;
+  border-top: 1px dashed color-mix(in srgb, #19212e 22%, transparent);
+  padding-top: 8px;
+}
+
+.roster h4 {
+  margin: 8px 0 4px;
+  font-size: 13px;
+  color: color-mix(in srgb, #19212e 64%, #3268b8 36%);
+}
+
+.roster ol {
+  margin: 0;
+  padding-left: 4px;
+  list-style: none;
+}
+
+.roster li {
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.roster li.me {
+  color: #cf5c36;
+  font-weight: 800;
+}
+
+.roster-empty {
+  margin: 4px 0;
+  font-size: 13px;
+  color: color-mix(in srgb, #19212e 46%, transparent);
+}
+
 .plain-table {
   overflow: hidden;
   border: 1px solid color-mix(in srgb, #19212e 12%, transparent);

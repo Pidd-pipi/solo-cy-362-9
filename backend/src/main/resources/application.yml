@@ -3,12 +3,20 @@ server:
 
 spring:
   datasource:
-    url: "${SPRING_DATASOURCE_URL:jdbc:h2:mem:app;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1}"
+    url: "${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/ldmurdergame;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE}"
     driver-class-name: "${SPRING_DATASOURCE_DRIVER:org.h2.Driver}"
     username: "${DB_USER:sa}"
     password: "${DB_PASSWORD:}"
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
   jpa:
     database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}"
     hibernate:
       ddl-auto: none
     open-in-view: false
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

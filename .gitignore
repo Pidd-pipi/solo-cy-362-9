@@ -10,3 +10,4 @@ backend/target/
 coverage/
 .pytest_cache/
 *.class
+backend/data/
