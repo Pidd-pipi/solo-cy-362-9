@@ -37,7 +37,21 @@ docker compose up -d
 | POST | `/api/sessions/{id}/signups` | 单人报名；有位占位，满员进入候补队尾 |
 | POST | `/api/sessions/{id}/cancel` | 取消报名；释放座位后按报名先后自动递补 |
 
-并发控制：场次写操作通过数据库行锁（`SELECT ... FOR UPDATE`）串行化，`(session_id, player_name)` 唯一约束兜底，保证不超卖、不重复占位。
+并发控制：场次写操作通过数据库行锁（`SELECT ... FOR UPDATE`）串行化，`(session_id, player_name)` 唯一约束兜底，保证不超卖、不重复占位。列表与详情由单条联表查询产出，同一份响应中的座位数、确认名单、候补队列、余位与状态始终来自同一时点快照。
+
+## 回归测试
+
+后端内置可重复运行的回归测试（`@SpringBootTest` + 内存 H2，无需手工启动任何服务）：
+
+```bash
+cd backend
+mvn test
+```
+
+- `SessionApiRegressionTest`：空场次、满员带候补、取消后重报、重复报名、递补顺序、调座限制、无效场次（404）、非法参数（400）、下架保护。
+- `SessionConcurrencyConsistencyTest`：30 人并发抢 4 座（不超卖、候补位次唯一）、同名并发报名（至多一个占位）、调座/取消递补/报名交错压力下逐份校验响应自洽。
+
+所有用例逐条校验场次视图不变量（计数与名单等长、确认数 ≤ 座位数、余位与满员标记自洽、位次连续、不重复占位、有候补必满员），失败信息会指出具体被违反的不变量与现场快照。
 
 ## 本地开发方式
 
